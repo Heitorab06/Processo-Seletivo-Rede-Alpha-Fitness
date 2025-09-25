@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Tabela de registros</title>
+</head>
+<body>
+    <h1>Registros da Planilha</h1> 
+    <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      background-color: #FFD600; /* amarelo Alpha */
+      color: #000;               /* texto preto */
+      padding: 15px 25px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 15px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #FFD600; /* amarelo Alpha */
+      color: #000;               /* texto preto */
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #fff8b3; /* amarelo claro no hover */
+      transition: background-color 0.3s;
+    }
+  </style>
+    <table border="1" id="tabela" cellpadding="8" style="border-collapse: collapse;">
+        <thead id="cabecalho"></thead>
+        <tbody id="corpo"></tbody>
+    </table>
+
+     <script>
+    const API_URL = "http://127.0.0.1:5000/dados";
+
+    async function carregarDados() {
+      try {
+        const res = await fetch(API_URL);     //espera até conseguir dar GET na api
+        const dados = await res.json();       //transforma em json para leitura dos dados
+
+        const cabecalho = document.getElementById("cabecalho");
+        cabecalho.innerHTML = "";
+        if (dados.length > 0) {
+          const cols = Object.keys(dados[0]);
+          let ths = cols.map(col => `<th>${col}</th>`).join("");
+          cabecalho.innerHTML = `<tr>${ths}</tr>`;      //adiciona o cabecalho na tabela
+        }
+
+        const corpo = document.getElementById("corpo");
+        corpo.innerHTML = "";
+        dados.forEach(linha => {
+          let tds = Object.values(linha).map(val => `<td>${val}</td>`).join("");
+          corpo.innerHTML += `<tr>${tds}</tr>`;         //adiciona o conteudo da tabela
+        });
+
+      } catch (err) {
+        console.error("Erro ao buscar dados:", err);
+      }
+    }
+
+    // Carrega os dados ao abrir a página
+    carregarDados();
+
+    // Atualiza a cada 5 segundos
+    setInterval(carregarDados, 5000);
+  </script>
+</body>
+</html>
