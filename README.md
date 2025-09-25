@@ -1,6 +1,6 @@
 # API de Dados do Google Sheets
 
-Este projeto cria uma **API em Python (Flask)** que consome dados de uma planilha do **Google Sheets**, valida os dados e os disponibiliza via uma rota HTTP. A API está hospedada no **Render**, e os dados podem ser acessados diretamente pelo site.
+Este projeto cria uma **API em Python (Flask)** que consome dados de uma planilha do **Google Sheets**, valida os dados e os disponibiliza via uma rota HTTP. A API está hospedada no **Render**, e os dados podem ser acessados diretamente pelo site (https://heitorab06.github.io/Processo-Seletivo-Rede-Alpha-Fitness/).
 
 ---
 
