@@ -12,6 +12,7 @@ Este projeto cria uma **API em Python (Flask)** que consome dados de uma planilh
   - **Email**: garante formato válido (letras, números e pontos antes do `@`).
   - **CPF**: verifica se está no formato correto.
   - **Número de telefone**: validação de dígitos.
+- Barra de pesquisa interativa
 - Disponibiliza os dados filtrados via **rota `/dados`** em formato JSON.
 - Fácil de consumir em frontend ou outras aplicações.
 
