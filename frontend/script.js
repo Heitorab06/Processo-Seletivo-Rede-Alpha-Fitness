@@ -1,6 +1,5 @@
 
 const API_URL = "https://processo-seletivo-rede-alpha-fitness.onrender.com/dados";
-// const API_URL = "http://127.0.0.1:5000/dados"
 
 async function carregarDados() {
     try {
