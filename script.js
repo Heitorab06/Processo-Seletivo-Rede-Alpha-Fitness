@@ -53,6 +53,10 @@ function renderTabela(dados, pesquisa = "") {
     corpo.appendChild(fragment);
 }
 
+function removerAcentos(texto) {
+    return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
 function filtrarTabela() {
     const input = document.getElementById("pesquisa").value.toLowerCase();
     const linhas = document.getElementById("corpo").getElementsByTagName("tr");
@@ -62,7 +66,8 @@ function filtrarTabela() {
         let encontrado = false;
 
         for (let j = 0; j < tds.length; j++) {
-            if (tds[j].textContent.toLowerCase().includes(input)) {
+            const textoTd = removerAcentos(tds[j].textContent.toLowerCase());
+            if (textoTd .includes(input)) {
                 encontrado = true;
                 break;
             }
